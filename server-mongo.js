@@ -60,14 +60,15 @@ router.route('/users')
 	.post(function(req, res) {
 		
 		var user = new User();		// create a new instance of the Bear model
+		var dt = new Date();
 		user.firstName = req.body.firstName;  // set the bears name (comes from the request)
 		user.lastName = req.body.lastName;
 		user.loginId = req.body.loginId;
 		user.role = req.body.role;
 		user.phoneMobile = req.body.phoneMobile;
 		user.supervisor = req.body.supervisor;
-		user.createDate = req.body.createDate;
-		user.updateDate = req.body.updateDate;
+		user.createDate = dt.toString();
+		user.updateDate = dt.toString();
 		user.updateBy = req.body.updateBy;
 	
 		user.save(function(err) {
@@ -115,8 +116,7 @@ router.route('/users/:user_id')
 				user.role = req.body.role;
 				user.phoneMobile = req.body.phoneMobile;
 				user.supervisor = req.body.supervisor;
-				user.createDate = req.body.createDate;
-				user.updateDate = req.body.updateDate;
+				user.updateDate =new Date().toString();
 				user.updateBy = req.body.updateBy;
 			
 				
@@ -153,7 +153,7 @@ router.route('/users/:user_id')
 			message.threadId = req.body.threadId;
 			message.faceBookUserId = req.body.faceBookUserId;
 			message.message = req.body.message;
-			message.createdTime = req.body.createdTime;
+			message.createdTime = new Date().toString();
 			message.faceBookGeoLocation = req.body.faceBookGeoLocation;
 			message.respondent.loginId = req.body.respondent.loginId;
 			message.respondent.messageId = req.body.respondent.messageId;
